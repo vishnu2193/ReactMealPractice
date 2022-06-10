@@ -1,2 +1,0 @@
-# ReactMealPractice
-Created with CodeSandbox

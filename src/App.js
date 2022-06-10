@@ -1,10 +1,30 @@
-import "./styles.css";
+import { useState } from 'react';
 
-export default function App() {
+import Header from './components/Layout/Header';
+import Meals from './components/Meals/Meals';
+import Cart from './components/Cart/Cart';
+import CartProvider from './store/CartProvider';
+
+function App() {
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  };
+
   return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
+    <CartProvider>
+      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      <Header onShowCart={showCartHandler} />
+      <main>
+        <Meals />
+      </main>
+    </CartProvider>
   );
 }
+
+export default App;
